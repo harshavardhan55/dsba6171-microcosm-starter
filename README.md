@@ -57,3 +57,5 @@
 2. Install the required dependencies:
    ```bash
    pip install -r requirements.txt
+
+Schema contracts define structure and validation rules. Semantic contracts define the business meaning that downstream AI will consume.
