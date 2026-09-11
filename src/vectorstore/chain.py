@@ -28,16 +28,23 @@ Question: {question}
 Answer:"""
     prompt = ChatPromptTemplate.from_template(template)
 
-    # 3. Initialize Hugging Face LLM endpoint
+    # 3. Retrieve token safely
+    token = os.getenv("HF_TOKEN")
+    if not token:
+        raise ValueError(
+            "HF_TOKEN environment variable is not set. Please export your Hugging Face token."
+        )
+
+    # 4. Initialize Hugging Face LLM endpoint using correct token parameter
     llm_engine = HuggingFaceEndpoint(
         repo_id="HuggingFaceH4/zephyr-7b-beta",
         task="text-generation",
         temperature=0.1,
-        huggingfacehub_api_token=os.getenv("HF_TOKEN"),
+        huggingfacehub_api_token=token,
     )
     llm = ChatHuggingFace(llm=llm_engine)
 
-    # 4. Construct RAG chain
+    # 5. Construct RAG chain
     rag_chain = (
         {"context": retriever, "question": RunnablePassthrough()}
         | prompt
