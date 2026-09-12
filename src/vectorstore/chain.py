@@ -1,9 +1,13 @@
 import os
 from langchain_chroma import Chroma
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import PromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-from langchain_huggingface import HuggingFaceEmbeddings, HuggingFaceEndpoint
+from langchain_huggingface import (
+    ChatHuggingFace,
+    HuggingFaceEmbeddings,
+    HuggingFaceEndpoint,
+)
 
 
 def get_rag_chain(persist_dir: str = "./chroma_db"):
@@ -20,20 +24,22 @@ def get_rag_chain(persist_dir: str = "./chroma_db"):
     )
     retriever = vectorstore.as_retriever(search_kwargs={"k": 2})
 
-    # 2. Define prompt template
+    # 2. Define chat prompt template
     template = """Answer the question based only on the following context:
 {context}
 
 Question: {question}
 Answer:"""
-    prompt = PromptTemplate.from_template(template)
+    prompt = ChatPromptTemplate.from_template(template)
 
-    # 3. Initialize Hugging Face LLM endpoint
-    llm = HuggingFaceEndpoint(
+    # 3. Initialize LLM Engine using conversational task
+    llm_engine = HuggingFaceEndpoint(
         repo_id="Qwen/Qwen2.5-Coder-7B-Instruct",
+        task="conversational",
         temperature=0.1,
         huggingfacehub_api_token=token,
     )
+    llm = ChatHuggingFace(llm=llm_engine)
 
     # 4. Construct RAG chain
     rag_chain = (
