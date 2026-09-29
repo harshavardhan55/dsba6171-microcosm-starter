@@ -1,4 +1,5 @@
-ki_id,ki_topic,ki_text
-KI-001,ChromaDB Vectorstore,ChromaDB is an open-source vector database designed to store embeddings and enable efficient similarity search for RAG systems.
-KI-002,LangChain Framework,"LangChain provides components for loading data, generating text embeddings, and chaining vector retrievers with LLMs."
-KI-003,Qwen Model Integration,Qwen2.5-0.5B-Instruct is a lightweight instruction-tuned model used to synthesize answers based on retrieved context.
+ki_id,ki_topic,ki_text,jurisdiction,authority_status,effective_date
+KI-001,Vector Database Policy,ChromaDB is an open-source vector database designed to store embeddings and enable efficient similarity search for US federal RAG deployments.,US,active,2025-01-01
+KI-002,Vector Database Policy,ChromaDB is an open-source vector database designed to store embeddings and enable efficient similarity search for EU commercial RAG deployments.,EU,draft,2026-06-01
+KI-003,LangChain Framework,LangChain provides components for loading data generating text embeddings and chaining vector retrievers with LLMs globally.,Global,active,2024-01-01
+KI-004,Vector Database Policy,Legacy ChromaDB persistence rules apply to archival databases built prior to 2024.,US,superseded,2023-01-01
