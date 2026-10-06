@@ -1,2 +1,4 @@
-query,top_baseline_id,top_filtered_id,hit_at_1
-What is the policy for ChromaDB vector database storage?,KI-004,KI-001,True
+Rank,Policy ID,Chunk Content Preview,Tokens,Cumulative Tokens,Within Budget
+1,NA-TRV-001,"Passengers traveling on Standard, Flex, or Premium fares may...",58,58,YES
+2,NA-TRV-001,Example rule: A backpack may qualify as the personal item if...,29,87,YES
+3,NA-TRV-001,"A personal item may include a backpack, purse, briefcase, la...",62,149,YES
